@@ -1,0 +1,20 @@
+1. Print n to 1:-  5,4,3,2,1
+
+#include <iostream>
+using namespace std;
+void rev(int n){
+    if(n==1){
+      cout<<1;
+      return ;
+    }
+    cout<<n<<",";
+    rev(n-1);
+}
+int main()
+{
+    rev(5);
+    return 0;
+}
+
+
+

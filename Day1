@@ -12,6 +12,64 @@ public:
     }
 };
 
+Approach:
 find(part) returns the starting position of the first occurrence of part in s.
 As long as that position is valid (i.e., less than s.length()), we call erase() to remove part from s.
 This repeats until no more occurrences of part are found.
+
+
+
+
+
+2. 4Sum
+link: https://leetcode.com/problems/4sum/description/
+
+CODE:
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>>ans;
+        set<vector<int>>s;
+        for(int i=0;i<nums.size();i++){
+            for(int j=i+1;j<nums.size();j++){
+                int k=j+1,l=nums.size()-1;
+                while(k<l){
+                    long long sum = (long long) nums[i]+(long long) nums[j]+(long long) nums[k]+(long long) nums[l];
+                    if(sum>target){
+                        l--;
+                    }
+                    else if(sum<target){
+                        k++;
+                    }
+                    else{
+                        s.insert({nums[i],nums[j],nums[k],nums[l]});
+                        k++;
+                        l--;
+                    }
+                }
+            }
+        }
+        for(auto i:s){
+            ans.push_back(i);
+        }
+        return ans;
+    }
+};
+
+Approach:
+First sort the array to make two-pointer logic work and to handle duplicates easily.
+
+Fix the first two numbers using two loops (i and j).
+
+For the remaining two numbers, use two pointers (k and l) instead of two more loops — this makes it faster.
+
+If the sum is more than target, move l--; if less, move k++; if equal, store the quadruplet.
+
+Use a set so that only unique quadruplets are stored.
+
+Convert the set to a vector and return the result.
+
+Time complexity:
+Two loops + two-pointer → O(n³)
+This is much faster than 4 nested loops (O(n⁴)).

@@ -54,7 +54,7 @@ int main()
 
 
 
-4. check vector is sorted or not
+4. check vector is sorted or not :-
 
 #include <iostream>
 #include <vector>
@@ -84,5 +84,36 @@ int main()
     vector<int>a{1,2,13,15,24};
     cout<<isSorted(a,5);
     // cout<<isSorted(a,1,5);
+    return 0;
+}
+
+
+
+
+
+5. Binary Search using recursion :-
+
+#include <iostream>
+#include <vector>
+using namespace std;
+bool binarySearch(vector<int>&a,int target,int st,int end){
+    if(st<=end){
+        int mid=(st+end)/2;
+        if(a[mid]==target){
+            return true;
+        }
+        else if(a[mid]>target){
+            return binarySearch(a,target,st,mid-1);
+        }else{
+            return binarySearch(a,target,mid+1,end);
+        }
+    }
+    return false;
+}
+
+int main()
+{
+    vector<int>a{1,2,13,15,24};
+    cout<<binarySearch(a,15,0,4);
     return 0;
 }

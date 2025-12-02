@@ -73,3 +73,44 @@ Convert the set to a vector and return the result.
 Time complexity:
 Two loops + two-pointer → O(n³)
 This is much faster than 4 nested loops (O(n⁴)).
+
+
+
+
+
+
+3. smallest permutation :-
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n=983;
+    vector<int>a;
+    while(n>0){
+        a.push_back(n%10);
+        n/=10;
+    }
+    sort(a.begin(),a.end());
+    int b=0;
+    for(int i=0;i<a.size();i++){
+        if(a[i]!=0){
+            b=a[i];
+            a.erase(a.begin()+i);
+            break;
+        }
+    }
+    for(auto i:a){
+        b=b*10+i;
+    }
+    cout<<b;
+    return 0;
+}
+
+Approach:
+Extract all digits of the number and store them in a vector.
+Sort the vector so the digits are arranged in ascending order.
+Find the first non-zero digit, assign it as the starting digit of the answer, and erase it from the vector
+(this avoids leading zeros).
+Append all remaining digits (including zeros) to the result.
+The final number formed is the smallest permutation of the original digits.

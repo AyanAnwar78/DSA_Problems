@@ -16,6 +16,7 @@ class List{
     List(){
         head=tail=NULL;
     }
+
     void push_front(int val){
         Node* newnode = new Node(val);
         if(head==NULL){
@@ -26,6 +27,17 @@ class List{
             head=newnode;
         }
     }
+
+    void push_back(int val){
+        Node* newnode = new Node(val);
+        if(head==nullptr){
+            head=tail=newnode;
+            return ;
+        }
+        tail->next=newnode;
+        tail=newnode;
+    }
+
     void print(){
         Node* temp=head;
         while(temp!=nullptr){

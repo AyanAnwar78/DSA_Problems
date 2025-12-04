@@ -58,6 +58,24 @@ class List{
         }
         temp->next=nullptr;
     }
+
+    void insert(int pos, int val){
+        if(pos<0){
+            cout<<"invalid index";
+            return;
+        }
+        if(pos==1){
+            push_front(val);
+            return;
+        }
+        Node* temp=head;
+        Node* newnode=new Node(val);
+        for(int i=0;i<pos-1;i++){
+            temp=temp->next;
+        }
+        newnode->next=temp->next;
+        temp->next=newnode;
+    }
     
     void print(){
         Node* temp=head;
